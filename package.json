@@ -1,0 +1,35 @@
+{
+  "name": "status-webhooks-handler",
+  "version": "1.0.0",
+  "description": "📡 A simple handler for the status webhooks sent from 🛰  https://astro-bot.space/status.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Astro-Discord-Bot/status-webhooks-handler.git"
+  },
+  "keywords": [
+    "webhook",
+    "handler"
+  ],
+  "author": "Giulio Pimenoff Verdolin",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Astro-Discord-Bot/status-webhooks-handler/issues"
+  },
+  "homepage": "https://github.com/Astro-Discord-Bot/status-webhooks-handler#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "discord.js": "^12.5.1",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.20.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1"
+  }
+}

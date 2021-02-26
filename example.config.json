@@ -1,0 +1,4 @@
+{
+    "webhooks_secret": "Insert the secret token here",
+    "server_port": "8090"
+}
