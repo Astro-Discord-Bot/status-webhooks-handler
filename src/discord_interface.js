@@ -1,42 +1,10 @@
 const { MessageEmbed, WebhookClient } = require('discord.js');
 const configs = require('../config.json');
 
-const webhookClient = new WebhookClient(configs.discord_webhook_id, configs.discord_webhook_path);
+const webhookClient = new WebhookClient(configs.discord_webhook_id, configs.discord_webhook_token);
 const webhookOptions = {
   username: 'Astro Status Updates',
   avatarURL: 'https://pbs.twimg.com/profile_images/1304415884237254656/GI6myFCE_400x400.jpg',
-};
-
-/*
- Cache used to save the last sent messages
- so that they can be deleted when a new one needs to be sent
- */
-const sentWebhooks = {
-  components: [
-    {
-      // Website
-      id: 'cklmq2o88566759xfn0a5hpkhnf',
-      message: null,
-    },
-    {
-      // Documentation
-      id: 'cklmq2o9k566769xfn09sdlhtsw',
-      message: null,
-    },
-    {
-      // Astro Ultimate
-      id: 'cklmq2o6w566749xfn08hpsapm9',
-      message: null,
-    },
-    {
-      // Astro
-      id: 'cklmq2o5g566739xfn04sr6wlmc',
-      message: null,
-    },
-  ],
-  incidents: [
-    // TODO
-  ],
 };
 
 // Those are from Astro Support server (https://astro-bot.space/suppot)
@@ -133,15 +101,8 @@ function getIncidentStatusUtils(status) {
   };
 }
 
-function sendComponentWebhook(embed, cIndex) {
-  webhookOptions.embeds = [embed];
-  webhookClient.send(null, webhookOptions)
-    .then(msg => sentWebhooks.components[cIndex].message = msg)
-    .catch(err => console.log(`[STATUS WEBHOOKS] An error occurred while sending a component webhook:\n${err}`));
-}
-
 module.exports = {
-  newComponentStatusWebhook: (name, status, id) => {
+  newComponentStatusWebhook: (name, status) => {
     const componentStatus = getComponentStatusUtils(status);
 
     const embed = new MessageEmbed()
@@ -153,13 +114,8 @@ module.exports = {
       .setFooter('Powered by instatus.com')
       .setTimestamp(Date.now());
 
-    const cIndex = sentWebhooks.components.findIndex(c => c.id === id);
-
-    if (sentWebhooks.components[cIndex].message) {
-      sentWebhooks.components[cIndex].message.delete()
-        .then(() => sendComponentWebhook(embed, cIndex))
-        .catch(err => console.log(`[STATUS WEBHOOKS] An error occurred while deleting a previously sent webhook:\n${err}`));
-    } else
-      sendComponentWebhook(embed, cIndex);
+    webhookOptions.embeds = [embed];
+    webhookClient.send(null, webhookOptions)
+      .catch(err => console.log(`[STATUS WEBHOOKS] An error occurred while sending a component status webhook:\n${err}`));
   },
 };

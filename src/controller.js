@@ -1,5 +1,6 @@
 const discordInterface = require('./discord_interface');
 
+// Local volatile cache for components statuses to prevent sending of unnecessary webhooks
 const componentStatuses = [
   {
     // Website
@@ -36,7 +37,7 @@ exports.handleStatusWebhook = (req, res) => {
         // Update the component status in the local cache for the next check
         componentStatuses[cIndex].status = component.status;
         // Sends the Discord webhook
-        discordInterface.newComponentStatusWebhook(component.name, component.status, component.id);
+        discordInterface.newComponentStatusWebhook(component.name, component.status);
       }
     } else if (incident) {
       // TODO
