@@ -1,7 +1,8 @@
-# Astro Status Webhooks Handler
+# 🛰 Astro Status Webhooks Handler
 This is a simple express server which listens for webhooks sent from [Astro's status page](https://astro-bot.space/status) and forwards them to Discord via Discord webhooks.
 
 # Setup
+**DISCLAIMER: You will need a VPS or a server in general to setup this application.**  
 If you want to receive Astro status notifications directly in your Discord server then follow the next steps:
 
 ## Setting up the Discord webhook

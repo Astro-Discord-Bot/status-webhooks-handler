@@ -1,7 +1,7 @@
 {
   "name": "status-webhooks-handler",
   "version": "1.0.0",
-  "description": "📡 A simple handler for the status webhooks sent from 🛰  https://astro-bot.space/status.",
+  "description": "🛰  A simple handler for the status webhooks sent from https://astro-bot.space/status.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
