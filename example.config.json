@@ -1,5 +1,5 @@
 {
-    "webhooks_secret": "Insert the secret token here",
+    "webhooks_secret": "Not needed at the moment",
     "server_port": "8090",
     "discord_webhook_id": "454487...",
     "discord_webhook_token": "webhook token, the one after the /ID, should look like a long password"
