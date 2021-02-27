@@ -12,6 +12,10 @@
     },
     "rules": {
         "no-console": "off",
-        "arrow-parens": "off"
+        "arrow-parens": "off",
+        "no-param-reassign": "off",
+        "nonblock-statement-body-position": "off",
+        "curly": "off",
+        "no-return-assign": "off"
     }
 }

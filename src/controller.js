@@ -1,23 +1,49 @@
 const discordInterface = require('./discord_interface');
 
+const componentStatuses = [
+  {
+    // Website
+    id: 'cklmq2o88566759xfn0a5hpkhnf',
+    status: 'OPERATIONAL',
+  },
+  {
+    // Documentation
+    id: 'cklmq2o9k566769xfn09sdlhtsw',
+    status: 'OPERATIONAL',
+  },
+  {
+    // Astro Ultimate
+    id: 'cklmq2o6w566749xfn08hpsapm9',
+    status: 'OPERATIONAL',
+  },
+  {
+    // Astro
+    id: 'cklmq2o5g566739xfn04sr6wlmc',
+    status: 'OPERATIONAL',
+  },
+];
+
 exports.handleStatusWebhook = (req, res) => {
-  const data = req.body;
+  try {
+    const data = req.body;
 
-  // testing
-  console.log(JSON.stringify(data));
+    const { incident, component } = data;
 
-  const { incident, component } = data;
-  let incidentUpdates = incident.incident_updates;
-  if (!incidentUpdates || incidentUpdates.length < 1) incidentUpdates = null;
+    if (component) {
+      const cIndex = componentStatuses.findIndex(c => c.id === component.id);
+      // Checks if the component status has actually changed
+      if (componentStatuses[cIndex].status !== component.status) {
+        // Update the component status in the local cache for the next check
+        componentStatuses[cIndex].status = component.status;
+        // Sends the Discord webhook
+        discordInterface.newComponentStatusWebhook(component.name, component.status, component.id);
+      }
+    } else if (incident) {
+      // TODO
+    }
 
-  const title = incident.name;
-  const url = `https://astro-bot.instatus.com/incident/${incidentUpdates ? incidentUpdates[-1].incident_id : incident.id}`;
-  const status = incidentUpdates ? incidentUpdates[-1].status : incident.status;
-  const description = incidentUpdates ? incidentUpdates[-1].body : incident.impact;
-
-  const affected = [component];
-
-  discordInterface.newWebhook(title, url, status, description, affected, Date.now());
-
-  res.status(200).json({ message: 'Status webhook received and handled successfully' });
+    res.status(200).json({ message: 'Status webhook received and handled successfully' });
+  } catch (err) {
+    console.log(`[STATUS WEBHOOKS] An error occurred while processing a status webhook:\n${err}`);
+  }
 };

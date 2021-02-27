@@ -11,4 +11,4 @@ app.use(bodyParser.json());
 
 app.use('/', routes(router));
 
-app.listen(configs.server_port, () => console.log(`📡 Listening to status webhooks from 🛰 https://astro-bot.space/status on port ${configs.server_port}`));
+app.listen(configs.server_port, () => console.log(`[STATUS WEBHOOKS] 📡  Listening to status webhooks from 🛰  https://astro-bot.space/status on port ${configs.server_port}`));
