@@ -12,8 +12,8 @@ If you want to receive Astro status notifications directly in your Discord serve
 - Click `New webhook`
 - Copy the `Webhook URL` with the apposite button  
 
-## Using this repository
-The Webhook URL copied from the last step should look something along that line:  
+## Setting up the config file
+The Webhook URL copied from the last step should look something along this line:  
 ```
 https://discord.com/api/webhooks/815309179048820776/dOWoDfsHwTFVVGNvwEp8wwbK0X0XTynxJnmzBrlXDWhd1GYWrcWye2WsRemGM669uCfB
 ```
@@ -21,15 +21,12 @@ https://discord.com/api/webhooks/815309179048820776/dOWoDfsHwTFVVGNvwEp8wwbK0X0X
 
 - In the folder you just downloaded rename the `examples.config.json` file to `config.json`.  
 
-- Open that file and modify the `discord_webhook_id` value (which by default is `454487...`) with the ID of the Discord webhook that you created before (which in the example URL shown above is `815309179048820776`)
+- Open that file and modify the `discord_webhook_id` value (which by default is `454487...`) with the ID of the Discord webhook that you created before (which in the example URL shown above is `815309179048820776` )
 
-- Now modify the `discord_webhook_token` value by inserting the webhook token of the Discord URL that you created (which in the example above is `dOWoDfsHwTFVVGNvwEp8wwbK0X0XTynxJnmzBrlXDWhd1GYWrcWye2WsRemGM669uCfB`)  
+- Now modify the `discord_webhook_token` value by inserting the webhook token of the Discord URL that you created (which in the example above is `dOWoDfsHwTFVVGNvwEp8wwbK0X0XTynxJnmzBrlXDWhd1GYWrcWye2WsRemGM669uCfB` )  
 
-## Hosting this application
+## Subscribing to Astro's Status page with webhooks
 You will need some sort of server to host this nodejs application.  
-If you have a VPS then I suppose you know how to get this thing up.  
-If you don't instead, I'm gonna guide you trough creating one with Heroku:
-- Head over to [Heroku](https://www.heroku.com) and sign in/up
-- Click `New` in the top-right and then `Create new App`
-- Insert a name and choose a region, then click `Create App`
-- 
+Once you got this app up and running head over to https://astro-bot.space/status, click `Get Updates` in the top-right, `Webhooks`, insert the application endpoint (for example `http://yourServerIP:8090/` where `8090` is the `server_port` value of the config.json file) and compile the rest of the form.  
+
+## You're done 🎉
