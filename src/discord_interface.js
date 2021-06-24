@@ -20,7 +20,7 @@ const colors = {
   offline: '#f14846',
 };
 
-// Documentation for instatus webhooks can be found on https://instatus.com/help/webhooks
+// Documentation for instatus webhooks can be found at https://instatus.com/help/webhooks
 function getComponentStatusUtils(status) {
   let emoji;
   let color;
